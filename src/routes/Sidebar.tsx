@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Sidebar.module.css";
 import { NavLink, Outlet } from "react-router";
 import { dBase } from "../data/dBase";
-// Import the Navbar here!
+import { Navbar } from "./Navbar";
 
 export const Sidebar = () => {
     const [open, setOpen] = React.useState(false);
@@ -83,7 +83,7 @@ export const Sidebar = () => {
             </section>
 
             <section className={styles.side__content}>
-                {/* RENDER THE NAVBAR HERE */}
+                <Navbar />
                 <Outlet />
             </section>
         </React.Fragment>
