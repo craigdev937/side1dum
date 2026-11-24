@@ -10,6 +10,7 @@ import { Posts } from "../pages/posts/Posts";
 import { Products } from "../pages/prod/Products";
 import { Quotes } from "../pages/quotes/Quotes";
 import { Recipes } from "../pages/recipes/Recipes";
+import { RDetail } from "../pages/recipes/RDetail";
 
 const RouteList = createBrowserRouter([
     {
@@ -44,6 +45,13 @@ const RouteList = createBrowserRouter([
             {
                 path: "/recipes",
                 element: <Recipes />
+            },
+            {
+                path: "/recipes/:id",
+                element: <RDetail />
+            },
+            {
+                path: "/recipes/:id"
             }
         ]
     }

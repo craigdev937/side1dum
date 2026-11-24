@@ -1,17 +1,38 @@
 import React from "react";
+import { Link } from "react-router";
 import classes from "./Recipes.module.css";
+import { DAPI } from "../../global/DAPI";
+import { Spinner } from "../../components/spin/Spinner";
 
 export const Recipes = () => {
+    const { error, isLoading, data } = DAPI.useRecQuery();
+    const REC = data?.recipes;
+
+    if (error) {
+        if ("status" in error) {
+            const errMSG = "error" in error ?
+                error.error :
+                JSON.stringify(error.data);
+            return <h1>Error: {errMSG}</h1>
+        } else {
+            return <h1>Error: {error.message}</h1>
+        }
+    };
+
     return (
         <React.Fragment>
-            <main>
-                <h1 className={classes.title}>Recipes Page</h1>
-                <p>
-                    lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-            </main>
+            {isLoading ? (
+                <Spinner />
+            ) : (
+                <main className={classes.grid}>
+                    {data?.recipes.map((rec) => (
+                        <Link key={rec.id} to={`/recipes/${rec.id}`} className={classes.card}>
+                            <h2 className={classes.name}>{rec.name}</h2>
+                            <img className={classes.image} src={rec.image} alt={rec.name} />
+                        </Link>
+                    ))}
+                </main>
+            )}
         </React.Fragment>
     );
 };
-
-
