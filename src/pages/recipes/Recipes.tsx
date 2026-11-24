@@ -25,7 +25,7 @@ export const Recipes = () => {
                 <Spinner />
             ) : (
                 <main className={classes.grid}>
-                    {data?.recipes.map((rec) => (
+                    {REC && REC.map((rec) => (
                         <Link key={rec.id} to={`/recipes/${rec.id}`} className={classes.card}>
                             <h2 className={classes.name}>{rec.name}</h2>
                             <img className={classes.image} src={rec.image} alt={rec.name} />

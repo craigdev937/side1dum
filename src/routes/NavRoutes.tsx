@@ -49,13 +49,10 @@ const RouteList = createBrowserRouter([
             {
                 path: "/recipes/:id",
                 element: <RDetail />
-            },
-            {
-                path: "/recipes/:id"
             }
         ]
     }
-]);
+], { basename: "/side1dum" });
 
 export const NavRoutes = () => {
     return (
